@@ -1,3 +1,11 @@
 const { tailwindcss } = require("config");
 
-module.exports = tailwindcss;
+module.exports = Object.assign(tailwindcss, {
+  theme: {
+    extend: {
+      colors: {
+        opaque: "hsla(0,0%,0%,0.33)",
+      },
+    },
+  },
+});
