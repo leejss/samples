@@ -1,6 +1,5 @@
 function createStore<T>(initialData: T) {
   type StateUpdateFunction<T> = (prev: T) => T;
-  // const _data = useRef<T>(initialData);
   let data = initialData;
   const subscribers = new Set<() => void>();
   const get = () => data;

@@ -1,6 +1,5 @@
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 import createStore from "./createStore";
-// import createRefStore from "./createRefStore";
 
 function createStateContext<T>(initialState: T) {
   type ContextReturnType = ReturnType<typeof createStore<T>>;
@@ -14,8 +13,8 @@ function createStateContext<T>(initialState: T) {
   const useContextState = () => {
     const storeData = useContext(StateContext);
     if (!storeData) throw new Error("Provider is missing");
-    const [data, setData] = useState(store.get());
-    store.subscribe(() => {
+    const [data, setData] = useState(storeData.get());
+    storeData.subscribe(() => {
       setData(storeData.get());
     });
     return [data, storeData.set] as const;

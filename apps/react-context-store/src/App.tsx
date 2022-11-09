@@ -1,6 +1,7 @@
 import { createContext, PropsWithChildren, useCallback, useContext, useRef, useState } from "react";
 import "./App.css";
 import createStateContext from "./createContext";
+import useStore from "./useStore";
 
 const Container = ({ children }: PropsWithChildren) => {
   return (
@@ -30,7 +31,8 @@ const Box = ({ children }: PropsWithChildren) => {
 };
 
 const Form = () => {
-  const [name, setName] = useNameStore();
+  // const [name, setName] = useNameStore();
+  const [name, setName] = useStore(NameContext);
   return (
     <form>
       <label>
@@ -77,10 +79,14 @@ const createNameStore = () => {
     first: "",
     last: "",
   });
+  type NameStoreUpdateFunction = (nextState: NameStore) => NameStore;
   const subscribers = useRef(new Set<() => void>()).current;
   const get = useCallback(() => value.current, []);
-  const set = useCallback((newVal: NameStore) => {
-    value.current = newVal;
+  const set = useCallback((nextState: NameStore | NameStoreUpdateFunction) => {
+    value.current =
+      typeof nextState === "function"
+        ? (nextState as NameStoreUpdateFunction)(value.current)
+        : nextState;
     subscribers.forEach((cb) => cb());
   }, []);
 
@@ -101,9 +107,9 @@ const createNameStore = () => {
 type NameContextReturnType = ReturnType<typeof createNameStore>;
 const NameContext = createContext<NameContextReturnType | null>(null); // default value is null
 
-const useNameStore = (): [NameStore, (val: NameStore) => void] => {
+const useNameStore = () => {
   const store = useContext(NameContext); // get store from the context
-  if (!store) throw new Error("Store is undeclared");
+  if (!store) throw new Error("Provider is missing");
   // rendering layer
   const [name, setName] = useState(store.get());
   store.subscribe(() => {
@@ -111,7 +117,7 @@ const useNameStore = (): [NameStore, (val: NameStore) => void] => {
     // render the components
     // store.set -> store update -> set function called -> rendering
   });
-  return [name, store.set];
+  return [name, store.set] as const;
 };
 
 const NameProvider = ({ children }: PropsWithChildren) => {
