@@ -161,6 +161,35 @@ importers:
       typescript: 4.8.4
       vite: 3.2.3
 
+  apps/todos-reducer:
+    specifiers:
+      '@types/react': ^18.0.24
+      '@types/react-dom': ^18.0.8
+      '@vitejs/plugin-react': ^2.2.0
+      autoprefixer: ^10.4.13
+      classnames: ^2.3.2
+      config: workspace:^1.0.0
+      postcss: ^8.4.18
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      tailwindcss: ^3.2.1
+      typescript: ^4.6.4
+      vite: ^3.2.3
+    dependencies:
+      autoprefixer: 10.4.13_postcss@8.4.18
+      classnames: 2.3.2
+      postcss: 8.4.18
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tailwindcss: 3.2.1_postcss@8.4.18
+    devDependencies:
+      '@types/react': 18.0.25
+      '@types/react-dom': 18.0.8
+      '@vitejs/plugin-react': 2.2.0_vite@3.2.3
+      config: link:../../packages/config
+      typescript: 4.8.4
+      vite: 3.2.3
+
   packages/config:
     specifiers: {}
 
@@ -840,6 +869,10 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.2
+    dev: false
+
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
     dev: false
 
   /color-convert/1.9.3:
