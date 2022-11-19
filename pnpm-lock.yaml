@@ -10,17 +10,25 @@ importers:
       '@types/react': ^18.0.24
       '@types/react-dom': ^18.0.8
       '@vitejs/plugin-react': ^2.2.0
+      autoprefixer: ^10.4.13
+      config: workspace:^1.0.0
+      postcss: ^8.4.18
       react: ^18.2.0
       react-dom: ^18.2.0
+      tailwindcss: ^3.2.1
       typescript: ^4.6.4
       vite: ^3.2.3
     dependencies:
+      autoprefixer: 10.4.13_postcss@8.4.18
+      postcss: 8.4.18
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      tailwindcss: 3.2.1_postcss@8.4.18
     devDependencies:
       '@types/react': 18.0.25
       '@types/react-dom': 18.0.8
       '@vitejs/plugin-react': 2.2.0_vite@3.2.3
+      config: link:../../packages/config
       typescript: 4.8.4
       vite: 3.2.3
 
