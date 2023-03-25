@@ -1,5 +1,5 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
-import Fade from "./components/Fade";
+import Fade from "./components/animations/Fade";
 import Layout from "./Layout";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
