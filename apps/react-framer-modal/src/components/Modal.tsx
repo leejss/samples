@@ -20,14 +20,31 @@ const Modal = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <button
-            onClick={() => {
-              closeModal();
+          <div
+            style={{
+              display: "grid",
+              gap: "8px",
+              position: "relative",
+              padding: "16px",
+              borderRadius: "12px",
+              backgroundColor: "white",
             }}
           >
-            Close modal
-          </button>
-          {children}
+            <button
+              style={{
+                padding: "4px",
+                borderRadius: "50%",
+                border: "none",
+                justifySelf: "right",
+              }}
+              onClick={() => {
+                closeModal();
+              }}
+            >
+              X
+            </button>
+            {children}
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
