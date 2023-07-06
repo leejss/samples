@@ -1,2 +1,2 @@
-# react-toys
-React Toy Projects
+# Samples
+Sample projects
