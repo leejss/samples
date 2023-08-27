@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Floating UI</title>
+  </head>
+  <body>
+    <div id="app">
+      <button class="text-lg text-white bg-slate-700 rounded-md p-2" id="button">Button</button>
+      <div class="hidden bg-black text-white p-2 font-bold rounded w-[max-content] absolute top-0 left-0" id="tooltip">
+        My tooltip
+
+        <div class="bg-black absolute w-2 h-2 rotate-45" id="arrow"></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
