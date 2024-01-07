@@ -1,65 +1,50 @@
-import { PropsWithChildren, createContext, useCallback, useState } from "react";
+import { PropsWithChildren, createContext, useCallback, useEffect, useState } from "react";
 import { asyncClient } from "../service/async-client";
+import { AsyncState } from "../type";
+
+export type CounterRes = AsyncState<{
+  value: number;
+}>;
 
 type CountContextType = {
-  value: number;
+  res: CounterRes;
   increment: () => Promise<void>;
   decrement: () => Promise<void>;
 };
 export const CounterContext = createContext<null | CountContextType>(null);
 
 export const CounterProvider = ({ children }: PropsWithChildren) => {
-  const [value, setValue] = useState(0);
+  const [res, setRes] = useState<CounterRes>({
+    status: "loading",
+  });
 
   const increment = useCallback(async () => {
+    setRes({
+      status: "loading",
+    });
     const res = await asyncClient.post<{ value: number }>("/api/counter/increment");
-
-    console.log("increment.res", res);
-
-    // TODO: pattern mathcing ?
-    if (res.status === "success") {
-      const value = res.data.value;
-      setValue(value);
-    }
-    if (res.status === "error") {
-      // TODO: handle error status
-    }
+    setRes(res);
   }, []);
 
   const decrement = useCallback(async () => {
+    setRes({
+      status: "loading",
+    });
     const res = await asyncClient.post<{ value: number }>("/api/counter/decrement");
-    console.log("decrement.res", res);
-    // TODO: pattern mathcing ?
-    if (res.status === "success") {
-      const value = res.data.value;
-      setValue(value);
-    }
-    if (res.status === "error") {
-      // TODO: handle error status
-    }
+    setRes(res);
   }, []);
 
-  // const getCount = useCallback(async () => {
-  //   const res = await asyncClient.get<{ value: number }>("/api/counter");
-  //   if (res.status === "success") {
-  //     const value = res.data.value;
-  //     setValue(value);
-  //   }
-  //   if (res.status === "error") {
-  //     // TODO: handle error status
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const value = await getCount();
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const res = await asyncClient.get<{ value: number }>("/api/counter");
+      setRes(res);
+    })();
+  }, []);
 
   return (
     <CounterContext.Provider
       value={{
-        value,
+        res,
         increment,
         decrement,
       }}
