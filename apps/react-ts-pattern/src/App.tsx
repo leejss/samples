@@ -24,8 +24,12 @@ const App = () => {
           .exhaustive()}
       </div>
       <div>
-        <button onClick={increment}>Increment</button>
-        <button onClick={decrement}>Decrement</button>
+        <button disabled={res.status === "loading"} onClick={increment}>
+          Increment
+        </button>
+        <button disabled={res.status === "loading"} onClick={decrement}>
+          Decrement
+        </button>
       </div>
     </div>
   );

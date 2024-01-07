@@ -14,11 +14,10 @@ const counterHanders = [
     });
   }),
   http.post("/api/counter/decrement", async () => {
-    // const value = await counterService.decrement();
-    // return HttpResponse.json({
-    //   value,
-    // });
-    return HttpResponse.error();
+    const value = await counterService.decrement();
+    return HttpResponse.json({
+      value,
+    });
   }),
 ];
 
