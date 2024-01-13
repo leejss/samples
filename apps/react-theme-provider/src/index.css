@@ -1,0 +1,13 @@
+:root {
+  --foreground: #000;
+  --background: #fff;
+}
+
+.dark {
+  --foreground: #fff;
+  --background: #000;
+}
+
+body {
+  background: var(--background);
+}
