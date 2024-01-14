@@ -3,7 +3,7 @@ import "./App.css";
 import { useTheme } from "./useTheme";
 
 const App = () => {
-  const { toggle } = useTheme();
+  const { toggleTheme: toggle } = useTheme();
   return (
     <ThemeProvider>
       <h1 className="title">Foreground</h1>

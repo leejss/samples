@@ -11,7 +11,7 @@ type ColorTheme = "light" | "dark";
 type TheemContextType = {
   theme: ColorTheme;
   setTheme: (theme: ColorTheme) => void;
-  toggle: () => void;
+  toggleTheme: () => void;
 };
 
 export const ThemeContext = createContext<TheemContextType | null>(null);
@@ -60,7 +60,7 @@ const Theme = ({ children }: ThemeProviderProps) => {
       value={{
         theme: themeState,
         setTheme,
-        toggle,
+        toggleTheme: toggle,
       }}
     >
       {children}
